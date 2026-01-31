@@ -1,0 +1,23 @@
+{% extends "parent/base.html" %}
+{% load blog2_tags %}
+{% block title %}creating post{% endblock %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {%  csrf_token %}
+        {{ form.as_p }}
+        {% if post %}
+                {% for img in post.images.all %}
+                    {% if img.img %}
+                        <img src="{{ img.img.url }}" alt="{{ img.title }}" width="300px" height="200px">
+                        <a href="{% url 'blog2:delete_image' img.id %}">حذف تصویر</a>
+                        <br>
+                    {% endif %}
+                {% endfor %}
+        {% endif %}
+    <br>
+    <br>
+    <input type="submit" value="ثبت">
+    </form>
+
+{% endblock %}

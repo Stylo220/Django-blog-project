@@ -1,0 +1,18 @@
+{% extends "parent/base.html" %}
+
+{% block title %}جستجو{% endblock %}
+<br>
+
+{% block content %}
+    <h2 class="search-title">{{ query }} نتیج جستجو برای </h2>
+<h5 class="search-count">تعداد نتایج پیدا شده: {{ resaults.count }}</h5>
+
+{% for post in resaults %}
+    <a class="search-link" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+    <p class="search-snippet">{{ post.body | truncatewords:5 }}</p>
+{% empty %}
+    <p class="search-empty">چیزی یافت نشد!</p>
+{% endfor %}
+
+
+{% endblock %}

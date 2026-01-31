@@ -1,0 +1,24 @@
+{% extends "parent/base.html" %}
+{% load blog2_tags %}
+{% block title %}login{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        you are logged in {{ request.user.username }}
+    {% else %}
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+        <br>
+        <a href="{% url 'blog2:password_reset' %}">پسورد را فراموش کرده اید؟</a>
+    {% endif %}
+
+
+{% endblock %}
+
+
+
+

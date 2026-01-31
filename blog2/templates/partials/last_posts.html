@@ -1,0 +1,9 @@
+{% load jformat %}
+<div>
+    <br>
+    <h2>last posts: </h2>
+
+    {% for post in l_posts %}
+        <p><a href="{{ post.get_absolute_url }}" class="no-underline">{{ post.title }} : {{ post.pb_date|jformat:"%Y/%m/%d - %I:%M %p" }}</a></p>
+    {% endfor %}
+</div>

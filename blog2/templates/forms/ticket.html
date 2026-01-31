@@ -1,0 +1,48 @@
+{% extends 'parent/base.html' %}
+{% load widget_tweaks %}
+{% block title %}Ticket Page{% endblock %}
+
+{% block content %}
+
+<div class="ticket-container">
+    <h2 class="ticket-title">ثبت تیکت</h2>
+    <form method="post" class="ticket-form">
+        {% csrf_token %}
+
+        <!-- ارورهای عمومی (غیر از فیلدها) -->
+        {{ form.non_field_errors }}
+
+        <div class="form-group">
+            {{ form.name.label_tag }}
+            {{ form.name |add_class:"form-input" }}
+            <div class="error-message">{{ form.name.errors }}</div>
+        </div>
+
+        <div  class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email|add_class:"form-input" }}
+            <div class="error-message">{{ form.email.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            {{ form.phone.label_tag }}
+            {{ form.phone|add_class:"form-input" }}
+            <div class="error-message">{{ form.phone.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            {{ form.subject.label_tag }}
+            {{ form.subject|add_class:"form-select" }}
+        </div>
+
+        <div class="form-group">
+            {{ form.message.label_tag }}
+            {{ form.message|add_class:"form-textarea" }}
+            <div class="error-message">{{ form.message.errors }}</div>
+        </div>
+
+        <button type="submit" class="form-button">ثبت تیکت</button>
+    </form>
+</div>
+
+{% endblock %}

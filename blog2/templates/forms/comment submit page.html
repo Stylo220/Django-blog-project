@@ -1,0 +1,19 @@
+{% extends 'parent/base.html' %}
+{% block title %}Comment Submit Page{% endblock %}
+{% block content %}
+    {% if comment %}
+        <p>Comment submitted successfully</p>
+        <a href='{{ post.get_absolute_url }}'>Back to post</a>
+    {% else %}
+        <p>Comment not submitted</p>
+        <p>{{ form.errors }}</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'blog2:post_comment' post.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+
+{% endblock %}

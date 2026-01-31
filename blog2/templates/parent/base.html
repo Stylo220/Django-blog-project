@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- لینک استایل اصلی -->
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    {% include 'partials/header.html' %}
+    {% include 'partials/navigation.html' %}
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'partials/footer.html' %}
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+<script>
+    const backToTop = document.getElementById("backToTop");
+
+    // نمایش دکمه وقتی کاربر اسکرول کرد
+    window.onscroll = function() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            backToTop.style.display = "block";
+        } else {
+            backToTop.style.display = "none";
+        }
+    };
+
+    // اسکرول نرم به بالا هنگام کلیک
+    backToTop.addEventListener("click", function(e){
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+</script>
+
+</body>
+</html>

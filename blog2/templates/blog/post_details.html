@@ -1,0 +1,41 @@
+{% extends "parent/base.html" %}
+{% load jformat %}
+{% block title %}post: {{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="post-container">
+    <h2 class="post-title">{{ post.title }}</h2>
+    <div class="post-meta">by {{ post.author }} | {{ post.pb_date|jformat:"%Y/%m/%d - %I:%M %p" }} | زمان مطالعه: {{ post.reading_time }} دقیقه</div>
+    {% for img in post.images.all %}
+        {% if img.img %}
+            <img src="{{ img.img.url }}" alt="{{ img.title }}" width="600px" height="400px">
+        {% endif %}
+    {% endfor %}
+    <div class="post-body">{{ post.body|linebreaks }}</div>
+
+    {% with comments.count as total_comments %}
+        <h3 class="comment-section-title">💬 Comments ({{ total_comments }})</h3>
+    {% endwith %}
+
+    <div class="comments-section">
+        {% for comment in comments %}
+            <div class="comment-box">
+                <div class="comment-header">{{ comment.name }} ({{ comment.email }})</div>
+                <div class="comment-date">{{ comment.created_at|jformat:"%Y/%m/%d - %I:%M %p" }}</div>
+                <div class="comment-body">{{ comment.cm_body|linebreaks }}</div>
+            </div>
+        {% empty %}
+            <p class="no-comments">No comments yet. Be the first to share your thoughts!</p>
+        {% endfor %}
+    </div>
+
+    <div class="comment-form">
+        <h3>Leave a Comment</h3>
+        <form action="{% url 'blog2:post_comment' post.id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

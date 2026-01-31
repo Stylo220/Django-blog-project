@@ -1,0 +1,44 @@
+{% extends "parent/base.html" %}
+{% load blog2_tags %}
+{% load jformat %}
+{% block title %}main page{% endblock %}
+
+{% block content %}
+    <div>
+        <p>پست پیشنهادی امروز برای شما:</p>
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </h2>
+                <p class="post-excerpt">{{ post.body|truncatewords:5 }}</p>
+
+                      {% with post.images.first as img %}
+                         {% if img and img.img %}
+                            <img src="{{ img.img.url }}" width="600" height="400" alt="{{ img.title }}">
+                         {% endif %}
+                      {% endwith %}
+    </div>
+<hr>
+    <br>
+    <div>
+        <p>number of published posts: {% post_count %}</p>
+        <p>number of comments: {% comment_count %}</p>
+        {% last_post as lp %}
+        <p >latest post: <a class="no-underline" href="{{ lp.get_absolute_url }}">{{ lp.title }}</a></p>
+    </div>
+    <div>
+        {% last_posts %}
+    </div>
+    <div>
+        <br>
+        <br>
+        {% hot_posts %}
+    </div>
+    <div>
+    <br>
+        <br>
+        <h2>categories:</h2>
+        <a href="{% url 'blog2:post_list_category' 'تکنولوژی' %}">تکنولوژی</a><br>
+        <a href="{% url 'blog2:post_list_category' 'هوش مصنوعی' %}">هوش مصنوعی</a><br>
+        <a href="{% url 'blog2:post_list_category' 'زبان برنامه نویسی' %}">زبان برنامه نویسی</a>
+    </div>
+
+{% endblock %}

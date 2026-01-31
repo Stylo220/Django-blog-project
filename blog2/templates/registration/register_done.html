@@ -1,0 +1,14 @@
+{% extends "parent/base.html" %}
+{% load blog2_tags %}
+{% block title %}register done{% endblock %}
+
+{% block content %}
+   <p>عزیز ثبت نام شما با موفقیت انجام شد همکنون میتوانید وارد شوید: {{ user.first_name }}</p>
+    <br>
+    <a href="{% url 'blog2:login' %}">وارد شوید</a>
+
+{% endblock %}
+
+
+
+

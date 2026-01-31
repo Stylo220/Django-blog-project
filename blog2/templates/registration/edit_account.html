@@ -1,0 +1,16 @@
+{% extends "parent/base.html" %}
+{% load blog2_tags %}
+{% block title %}edit account{% endblock %}
+
+{% block content %}
+   <form method="post" enctype="multipart/form-data">
+   {% csrf_token %}
+   {{ edit_user_form.as_p }}
+   {{ edit_account_form.as_p }}
+   <input type="submit" value="save">
+
+   </form>
+{% endblock %}
+
+
+

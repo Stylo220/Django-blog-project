@@ -1,0 +1,30 @@
+
+<div class="search-box">
+    <form method="get" action="{% url "blog2:post_search" %}">
+        <input class="search-input" type="text" name="query" required
+               placeholder="اسم پست ویا نویسنده ویا قسمتی از متن پست را بنویس تا پیدا کنم برات">
+        <input class="search-submit" type="submit" value="جستجو">
+    </form>
+</div>
+
+<nav class="navbar">
+    <ul class="nav-list">
+        <li><a href="{% url "blog2:index" %}">صفحه اصلی</a></li>
+        <li><a href="{% url "blog2:post_list"%}">بلاگ</a></li>
+        <li><a href="#"></a>#</li>
+        <li><a href="{% url "blog2:ticket" %}">ارسال تیکت</a></li>
+    </ul>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'blog2:profile' %}" style="color: white">profile</a>
+        {% if request.user.editaccount.user_photo %}
+            <a href="{% url 'blog2:user_bio' %}"><img src="{{ request.user.editaccount.user_photo.url }}" width="30px" height="30px" alt="profile photo"></a>
+        {% endif %}
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'blog2:profile' %}" style="color: white">{{ request.user.first_name | default:user.username }}</a>
+    {% else %}
+        <a href="{% url 'blog2:login' %}" style="color: white">login</a>
+        <a href="{% url 'blog2:register' %}" style="color: white">register</a>
+    {% endif %}
+</nav>

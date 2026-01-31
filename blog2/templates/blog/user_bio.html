@@ -1,0 +1,18 @@
+{% extends "parent/base.html" %}
+{% load jformat %}
+{% block title %}user bio{% endblock %}
+
+{% block content %}
+    <div dir="rtl">
+        <h2>  اطلاعات کاربر {{ user.username }} </h2>
+   <img src="{{ account.user_photo.url }}" alt="{{ user.username }}" width="200" height="200">
+    <p>نام: {{ user.first_name }} {{ user.last_name }}</p>
+    <p>تاریخ تولد: {{ account.date_of_birth|jformat:'%Y/%m/%d' }}</p>
+    <p>شغل: {{ account.job }}</p>
+    <br>
+    <h4>درباره کاریر:</h4>
+    <p>{{ account.bio }}</p>
+    </div>
+
+
+{% endblock %}
