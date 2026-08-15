@@ -14,7 +14,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from random import *
 # Create your views here.
-
 def index(request):
     posts = Post.man_published.all()
     post = choice(posts)
