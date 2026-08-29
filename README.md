@@ -3,7 +3,7 @@
 <p align="center">
   <img src="screenshots/post-detail.jpg" width="300">
   <img src="screenshots/post-list.jpg" width="300">
-  <img src="screenshots/home-page.jpg" width="300">
+  <img src="screenshots/Home-page.jpgome-page.jpg" width="300">
 </p>
 <p align="center">
   <img src="screenshots/leave-comment.jpg" width="300">
