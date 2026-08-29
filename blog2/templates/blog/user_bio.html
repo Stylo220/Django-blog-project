@@ -4,13 +4,13 @@
 
 {% block content %}
     <div dir="rtl">
-        <h2>  اطلاعات کاربر {{ user.username }} </h2>
+        <h2>info of: {{ user.username }} </h2>
    <img src="{{ account.user_photo.url }}" alt="{{ user.username }}" width="200" height="200">
-    <p>نام: {{ user.first_name }} {{ user.last_name }}</p>
-    <p>تاریخ تولد: {{ account.date_of_birth }}</p>
-    <p>شغل: {{ account.job }}</p>
+    <p>name: {{ user.first_name }} {{ user.last_name }}</p>
+    <p>date of birth: {{ account.date_of_birth }}</p>
+    <p>job: {{ account.job }}</p>
     <br>
-    <h4>درباره کاریر:</h4>
+    <h4>about me: </h4>
     <p>{{ account.bio }}</p>
     </div>
 

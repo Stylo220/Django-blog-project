@@ -13,6 +13,4 @@ urlpatterns = [
     path('ticket/', TicketView.as_view(), name='ticket'),
 
 
-
-
 ]

@@ -1,12 +1,12 @@
 {% extends "parent/base.html" %}
 
-{% block title %}لیست پست‌ها{% endblock %}
+{% block title %}post list{% endblock %}
 
 {% block content %}
     {% if category == None %}
-        <h1 class="post-list-title">📚 پست‌ها</h1>
+        <h1 class="post-list-title">📚 posts</h1>
     {% else %}
-        <h1 class="post-list-title">📚 پست‌های مربوط به {{ category }}</h1>
+        <h1 class="post-list-title">📚 related posts to: {{ category }}</h1>
     {% endif %}
 
 
@@ -28,7 +28,7 @@
             </div>
 
         {% empty %}
-            <p class="no-posts">هیچ پستی یافت نشد.</p>
+            <p class="no-posts">found nothing!</p>
         {% endfor %}
     </div>
     {% include 'partials/pagination.html' with page=posts %}

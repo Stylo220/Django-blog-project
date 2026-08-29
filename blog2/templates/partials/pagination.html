@@ -1,9 +1,9 @@
 {% if page.has_other_pages %}
 <div class="pagination">
     {% if page.has_previous %}
-        <a href="?page={{ page.previous_page_number }}">&laquo; قبلی</a>
+        <a href="?page={{ page.previous_page_number }}">&laquo; preveous</a>
     {% else %}
-        <span class="disabled">&laquo; قبلی</span>
+        <span class="disabled">&laquo; preveous</span>
     {% endif %}
 
     {% for num in page.paginator.page_range %}
@@ -15,9 +15,9 @@
     {% endfor %}
 
     {% if page.has_next %}
-        <a href="?page={{ page.next_page_number }}">بعدی &raquo;</a>
+        <a href="?page={{ page.next_page_number }}">next &raquo;</a>
     {% else %}
-        <span class="disabled">بعدی &raquo;</span>
+        <span class="disabled">next &raquo;</span>
     {% endif %}
 </div>
 {% endif %}

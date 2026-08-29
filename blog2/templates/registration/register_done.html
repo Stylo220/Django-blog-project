@@ -3,9 +3,9 @@
 {% block title %}register done{% endblock %}
 
 {% block content %}
-   <p>عزیز ثبت نام شما با موفقیت انجام شد همکنون میتوانید وارد شوید: {{ user.first_name }}</p>
+   <p>dear {{ user.first_name }} your account has been created now you can login!</p>
     <br>
-    <a href="{% url 'blog2:login' %}">وارد شوید</a>
+    <a href="{% url 'blog2:login' %}">login</a>
 
 {% endblock %}
 

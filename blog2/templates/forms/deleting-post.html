@@ -3,10 +3,10 @@
 {% block title %}deleting post{% endblock %}
 
 {% block content %}
-    <h2> مطمین هستید؟ ({{ post.title }}) از حذف پست </h2>
+    <h2>do you really want to delete ({{ post.title }})</h2>
     <form method="post">
         {% csrf_token %}
-        <input type="submit" value="حذف">
-        <p><a href="{% url 'blog2:profile' %}">انصراف</a></p>
+        <input type="submit" value="delete">
+        <p><a href="{% url 'blog2:profile' %}">ignore</a></p>
     </form>
 {% endblock %}

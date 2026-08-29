@@ -13,16 +13,16 @@ from django import forms
 class TicketForm(forms.Form):
 
     SUB_CHOISES = (
-        ('پیشنهاد', 'پیشنهاد'),
-        ('انتقاد', 'انتقاد'),
-        ('گزارش', 'گزارش'),
+        ('suggestion', 'suggestion'),
+        ('complient', 'complient'),
+        ('report', 'report'),
     )
 
-    name = forms.CharField(max_length=250, label='نام', required=True)
-    message = forms.CharField(widget=forms.Textarea, label='پیام', required=True)
-    email = forms.EmailField(required=True, label='ایمیل')
-    phone = forms.CharField(label='شماره تماس', max_length=11, required=False, min_length=11)
-    subject = forms.ChoiceField(choices = SUB_CHOISES,label='یک مورد را انتخاب کنید' ,initial = 'پیشنهاد')
+    name = forms.CharField(max_length=250, label='name', required=True)
+    message = forms.CharField(widget=forms.Textarea, label='massage', required=True)
+    email = forms.EmailField(required=True, label='email')
+    phone = forms.CharField(label='cellphone number', max_length=11, required=False, min_length=11)
+    subject = forms.ChoiceField(choices = SUB_CHOISES,label='choose one' ,initial = 'suggestion', required=True)
 
 #comment------------------------------------------------------------------------------------------------
 
@@ -40,8 +40,8 @@ class PostSearch(forms.Form):
 #creating_post---------------------------------------------------------------------------------------------------------
 
 class CreatingPostForm(forms.ModelForm):
-    img1 = forms.ImageField(label='تصویر اول', required=True)
-    img2 = forms.ImageField(label='تصویر دوم', required=False)
+    img1 = forms.ImageField(label='image 1', required=True)
+    img2 = forms.ImageField(label='image 2', required=False)
     class Meta:
         model = Post
         fields = ['title', 'body', 'reading_time', 'category']

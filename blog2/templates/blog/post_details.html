@@ -5,7 +5,7 @@
 {% block content %}
 <div class="post-container">
     <h2 class="post-title">{{ post.title }}</h2>
-    <div class="post-meta">by {{ post.author }} | {{ post.pb_date }} | زمان مطالعه: {{ post.reading_time }} دقیقه</div>
+    <div class="post-meta">by {{ post.author }} | {{ post.pb_date }} | reading time:  {{ post.reading_time }} min</div>
     {% for img in post.images.all %}
         {% if img.img %}
             <img src="{{ img.img.url }}" alt="{{ img.title }}" width="600px" height="400px">

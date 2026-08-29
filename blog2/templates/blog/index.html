@@ -4,7 +4,7 @@
 
 {% block content %}
     <div>
-        <p>پست پیشنهادی امروز برای شما:</p>
+        <p>sugested post for you: </p>
         <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                 </h2>
                 <p class="post-excerpt">{{ post.body|truncatewords:5 }}</p>
@@ -35,9 +35,9 @@
     <br>
         <br>
         <h2>categories:</h2>
-        <a href="{% url 'blog2:post_list_category' 'تکنولوژی' %}">تکنولوژی</a><br>
-        <a href="{% url 'blog2:post_list_category' 'هوش مصنوعی' %}">هوش مصنوعی</a><br>
-        <a href="{% url 'blog2:post_list_category' 'زبان برنامه نویسی' %}">زبان برنامه نویسی</a>
+        <a href="{% url 'blog2:post_list_category' 'technology' %}">technology</a><br>
+        <a href="{% url 'blog2:post_list_category' 'ai' %}">ai</a><br>
+        <a href="{% url 'blog2:post_list_category' 'programming language' %}">programming language</a>
     </div>
 
 {% endblock %}
