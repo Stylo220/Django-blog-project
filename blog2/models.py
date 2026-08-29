@@ -1,11 +1,9 @@
 from tkinter.constants import CASCADE
-
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.core.files.storage import storages
 from django.db import models
-from django_jalali.db import models as jmodels
 from django.urls import reverse
-import jdatetime
 from django.template.defaultfilters import slugify
 
 
@@ -36,14 +34,14 @@ class Post(models.Model):
     body = models.TextField(verbose_name='متن')
     author = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'posts', verbose_name='نویسنده')
     slug = models.SlugField(max_length=250, unique=True)
-    pb_date = jmodels.jDateTimeField(default=jdatetime.datetime.now, verbose_name='تاریخ انتشار')
-    created_at = jmodels.jDateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
-    updated_at = jmodels.jDateTimeField(auto_now=True, verbose_name='آپدیت شده')
+    pb_date = models.DateTimeField(default=datetime.now, verbose_name='تاریخ انتشار')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='آپدیت شده')
     status = models.CharField(max_length=2,choices= Status.choices , default=Status.DRAFT)
     reading_time = models.PositiveIntegerField(default=0, verbose_name='زمان مطالعه')
     category = models.CharField(max_length=30, choices = CATEGORY_CHOISES, default= 'سایر', verbose_name='دسته بندی')
 
-    objects = jmodels.jManager()
+    objects = models.Manager()
     man_published = PublishedManager()
 
 
@@ -83,7 +81,7 @@ class Ticket(models.Model):
     email = models.EmailField(verbose_name='ایمیل')
     phone = models.CharField(max_length=11, verbose_name='شماره تماس')
     subject = models.CharField(verbose_name='عنوان پیام')
-    time = jmodels.jDateTimeField(auto_now_add=True, verbose_name='زمان')
+    time = models.DateTimeField(auto_now_add=True, verbose_name='زمان')
 
     class Meta:
         verbose_name = 'تیکت'
@@ -99,8 +97,8 @@ class Ticket(models.Model):
 class Comment(models.Model):
     name = models.CharField(max_length=250, verbose_name= 'نام')
     cm_body = models.TextField(verbose_name= 'کامنت')
-    created_at = jmodels.jDateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
-    updated_at = jmodels.jDateTimeField(auto_now=True, verbose_name='تاریخ آپدیت')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='تاریخ آپدیت')
     email = models.EmailField(verbose_name='ایمیل')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', verbose_name='پست')
     active = models.BooleanField(default=False, verbose_name='تایید')
@@ -121,7 +119,7 @@ class Comment(models.Model):
 class PostImage(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images',verbose_name='پست')
     title = models.CharField(max_length=250, null=True, blank=True, verbose_name='عنوان')
-    created_at = jmodels.jDateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     img = models.ImageField(upload_to='post_img/', blank=True, null=True)
 
     class Meta:
@@ -144,7 +142,7 @@ class PostImage(models.Model):
 
 class EditAccount(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='editaccount')
-    date_of_birth = jmodels.jDateField(blank=True, null=True, verbose_name='تاریخ تولد')
+    date_of_birth = models.DateField(blank=True, null=True, verbose_name='تاریخ تولد')
     bio = models.TextField(max_length=400, blank=True, null=True, verbose_name='بیو')
     user_photo = models.ImageField(blank=True, null=True, verbose_name='تصویر پروفایل', upload_to='profile_photos/')
     job = models.CharField(max_length=100, blank=True, null=True, verbose_name='شغل')

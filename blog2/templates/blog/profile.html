@@ -1,6 +1,6 @@
 {% extends "parent/base.html" %}
 {% load blog2_tags %}
-{% load jformat %}
+
 {% block title %}profile{% endblock %}
 
 {% block content %}
@@ -37,7 +37,7 @@
                     {% for comment in post.comments.all %}
                         {% if comment.active == True %}
                             <p>نویسنده: {{ comment.name }}</p>
-                            <p>تاریخ: {{ comment.created_at|jformat:'%Y/%m/%d' }}</p>
+                            <p>تاریخ: {{ comment.created_at}}</p>
                             <p>متن: {{ comment.cm_body }}</p>
                             <br>
                         {% endif %}

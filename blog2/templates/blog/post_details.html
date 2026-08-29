@@ -1,11 +1,11 @@
 {% extends "parent/base.html" %}
-{% load jformat %}
+
 {% block title %}post: {{ post.title }}{% endblock %}
 
 {% block content %}
 <div class="post-container">
     <h2 class="post-title">{{ post.title }}</h2>
-    <div class="post-meta">by {{ post.author }} | {{ post.pb_date|jformat:"%Y/%m/%d - %I:%M %p" }} | زمان مطالعه: {{ post.reading_time }} دقیقه</div>
+    <div class="post-meta">by {{ post.author }} | {{ post.pb_date }} | زمان مطالعه: {{ post.reading_time }} دقیقه</div>
     {% for img in post.images.all %}
         {% if img.img %}
             <img src="{{ img.img.url }}" alt="{{ img.title }}" width="600px" height="400px">
@@ -21,7 +21,7 @@
         {% for comment in comments %}
             <div class="comment-box">
                 <div class="comment-header">{{ comment.name }} ({{ comment.email }})</div>
-                <div class="comment-date">{{ comment.created_at|jformat:"%Y/%m/%d - %I:%M %p" }}</div>
+                <div class="comment-date">{{ comment.created_at }}</div>
                 <div class="comment-body">{{ comment.cm_body|linebreaks }}</div>
             </div>
         {% empty %}
